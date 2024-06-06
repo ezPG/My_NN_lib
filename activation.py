@@ -47,6 +47,14 @@ class Sigmoid(Activation):
         super().__init__(sigmoid, sigmoid_prime)
 
     def sigmoid(self, X):
+        '''
+            Need changes due to unstablity caused by large negative inputs. 
+            Following official implementation in pytorch.
+            
+            1/(1 + np.exp(-x)), for x >= 0
+            np.exp(x)/(1 + np.exp(x)), for x < 0
+        '''
+        
         return 1 / (1 + np.exp(-X))
 
     def sigmoid_prime(self, X):
